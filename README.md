@@ -18,4 +18,4 @@ Each program is written independently for clarity and practical exam use.
 ## Author
 Manthan Parekh
 
-# Follow For more AND do like it.
+## Follow For more AND do like it.
