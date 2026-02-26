@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define MAX 10
-#define INF 9999
+#define MAX 20
+#define INF 99999
 
 int graph[MAX][MAX];
 int heuristic[MAX];
-int n;   // number of nodes
+int n;
 
 // Function to print path
 void printPath(int parent[], int goal) {
@@ -36,7 +36,7 @@ void aStar(int start, int goal) {
 
     while (openCount > 0) {
 
-        // Find node with minimum f
+        // Find node with minimum f value
         int bestIndex = 0;
         for (int i = 1; i < openCount; i++)
             if (f[open[i]] < f[open[bestIndex]])
@@ -44,14 +44,15 @@ void aStar(int start, int goal) {
 
         int current = open[bestIndex];
 
-        // Remove from open
+        // Remove from open list
         open[bestIndex] = open[--openCount];
         closed[current] = 1;
 
+        // Goal reached
         if (current == goal) {
             printf("\nShortest Path: ");
             printPath(parent, goal);
-            printf("\nTotal Cost: %d\n", g[goal]);
+            printf("\nTotal Path Cost: %d\n", g[goal]);
             return;
         }
 
@@ -66,7 +67,7 @@ void aStar(int start, int goal) {
                     f[i] = g[i] + heuristic[i];
                     parent[i] = current;
 
-                    // Add to open if not already present
+                    // Add to open if not present
                     int found = 0;
                     for (int j = 0; j < openCount; j++)
                         if (open[j] == i) found = 1;
@@ -83,15 +84,27 @@ void aStar(int start, int goal) {
 
 int main() {
 
+    int edges;
     printf("Enter number of nodes: ");
     scanf("%d", &n);
 
-    printf("Enter adjacency matrix (0 if no edge):\n");
+    // Initialize graph
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            scanf("%d", &graph[i][j]);
+            graph[i][j] = 0;
 
-    printf("Enter heuristic values:\n");
+    printf("Enter number of edges: ");
+    scanf("%d", &edges);
+
+    printf("Enter edges (source destination cost):\n");
+    for (int i = 0; i < edges; i++) {
+        int u, v, cost;
+        scanf("%d %d %d", &u, &v, &cost);
+        graph[u][v] = cost;
+        graph[v][u] = cost;  
+    }
+
+    printf("Enter heuristic values for each node:\n");
     for (int i = 0; i < n; i++)
         scanf("%d", &heuristic[i]);
 
