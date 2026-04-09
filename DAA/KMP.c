@@ -58,6 +58,17 @@ int main() {
     char txt[] = "ABABDABACDABABCABAB";
     char pat[] = "ABABCABAB";
 
+    printf("Given Text is :\t");
+    for(int i = 0;i<sizeof(txt);i++)
+    {
+        printf("%c",txt[i]);
+    }
+
+    printf("\nChecking pattern is :\t");
+    for(int i = 0;i<sizeof(txt);i++)
+    {
+        printf("%c",pat[i]);
+    }
     KMPSearch(txt, pat);
 
     return 0;
