@@ -32,17 +32,32 @@ int minimax(int depth, int nodeIndex, int isMax, int values[], int height) {
         );
 }
 
-int main() {
-    int values[] = {3, 5, 2, 9, 12, 5, 23, 23}; // leaf nodes
-    int n = sizeof(values) / sizeof(values[0]);
+int main() { // leaf nodes
+    int n;
+    
+    printf("Enter the number of leaf nodes:\t");
+    scanf("%d",&n);
+    if ((n & (n - 1)) != 0) {
+    printf("Number of leaf nodes must be a power of 2!\n");
+    return 0;
+}
+    int values[n];
+    printf("Enter the leaf node values:\t");
+
+    for(int j=0 ;j<n;j++)
+    {
+        scanf("%d",&values[j]);
+    }
+    
 
     int height = log2(n);
+    
 
     int result = minimax(0, 0, 1, values, height);
 
     printf("The optimal value at root (MAX) is: %d\n", result);
     printf("The leaf nodes are :\n");
-    for(int i = 0;i<8;i++)
+    for(int i = 0;i<n;i++)
     {
         printf("%d\t",values[i]);
     }
