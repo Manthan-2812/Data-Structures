@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 
-// Function to return maximum of two numbers
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
 
-// Function to return minimum of two numbers
+
 int min(int a, int b) {
     return (a < b) ? a : b;
 }
@@ -14,18 +13,18 @@ int min(int a, int b) {
 // Minimax function
 int minimax(int depth, int nodeIndex, int isMax, int values[], int height) {
     
-    // Base case: leaf node reached
+    
     if (depth == height)
         return values[nodeIndex];
 
-    // If MAX player's turn
+    
     if (isMax)
         return max(
             minimax(depth + 1, nodeIndex * 2, 0, values, height),
             minimax(depth + 1, nodeIndex * 2 + 1, 0, values, height)
         );
 
-    // If MIN player's turn
+    
     else
         return min(
             minimax(depth + 1, nodeIndex * 2, 1, values, height),
