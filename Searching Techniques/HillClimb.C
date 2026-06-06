@@ -10,10 +10,14 @@ int hillClimbing(int start)
 {
     int current = start;
     int neighbor;
-
+    int step = 1;
+    if(f(current+1)<f(current-1))
+    {
+        step = -1;
+    }
     while (1)
     {
-        neighbor = current + 1;
+        neighbor = current + step;
 
         // If neighbor gives better value, move there
         if (f(neighbor) > f(current))
