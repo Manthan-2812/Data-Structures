@@ -3,7 +3,7 @@
 // Function definition
 int f(int x)
 {
-    return -x*x + 6*x + 5;
+    return x*x + 2*x + 8;
 }
 
 int hillClimbing(int start)
@@ -20,7 +20,7 @@ int hillClimbing(int start)
         neighbor = current + step;
 
         // If neighbor gives better value, move there
-        if (f(neighbor) > f(current))
+        if (f(neighbor) < f(current))
         {
             current = neighbor;
         }
